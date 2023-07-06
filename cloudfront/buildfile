@@ -1,0 +1,39 @@
+.PHONY: clean init plan apply
+
+###  wget required/missing plugin as needed - https://releases.hashicorp.com/
+init:
+#	terraform init -input=false -plugin-dir=/usr/local/lib/terraform3.6
+	terraform init
+
+clean:
+	rm -rf .terraform
+	rm tfplan.out
+
+%:
+	terraform workspace select $@
+	terraform init
+	terraform plan -input=false
+	
+%-apply:
+	terraform workspace select $(*)
+	terraform init
+	terraform apply -input=false -auto-approve
+
+plan: init
+	@$(MAKE) $(foreach env,$(ENVS), $(env))
+
+apply: init
+	@$(MAKE) $(foreach env,$(ENVS), $(env)-apply)
+
+bootstrap: init
+	$(foreach env,$(ENVS), terraform workspace new $(env);)
+
+##################
+# create vpn_connection
+vpn-connection:
+	$(foreach env,$(ENVS), ../create-partner-vpn.sh $(env);)
+
+##################
+# create vpn_connection preview
+vpn-connection-preview:
+	$(foreach env,$(ENVS), ../create-partner-vpn.sh $(env) --dry-run;)
