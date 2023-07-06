@@ -1,0 +1,4 @@
+export const AUTHENTICATION_TYPES = {
+  LINKEDIN: "LINKEDIN",
+  COGNITO: "COGNITO",
+};

@@ -1,0 +1,35 @@
+export const project = [
+    {
+        "title":"Serverless Infrastructure: Applicant Tracking System",
+        "description": "This website is a single page application, build using React JS and hosted on AWS serverless Infrastrcture. Leveraging AWS resources, such as API Gateway, Lambda, Conginto, RDS and s3bucket",
+        "image": require('./images/serverless.png'),
+        "highlites": [
+          "While s3bucket host the static contents. Job portal (WIP) is integrated with slack and authentication is handle by Lambda and cognito",
+          "Each resume is processed by NLP based Lambda function, findings are posted to slack. Internal Recuriting team manually validate these findings and scheudle an internal screening",
+          "AWS Cognito, Lambda and API Gateway Authentication is leveraged to secure REST POST endpoints."
+        ]
+        },
+        {
+        "title":"Multi-region AWS Network Infrastructure: Designed and Developed under 400 hours",
+        "description": "We leveraged Terraform cloud to build AWS Network Infrastructure, spread across us-east-1, us-west-2 and eu-central-1 regions. Three regions are connected via TransitGateway peerings, and regulated traffic using TrasitGateway route-tables dedicated to Accounts and Regions",
+        "image": require('./images/AWS_Multi_Region_Network.png'),
+        "highlites": [
+          "Created multiple GIT repositories to manage Infrastructure code. Leveraged git tags to version control terraform modules. Maintained dedicated GIT repo to manage core resources such as TransitGateways, Peering Attachments and TGW Route-Tables",
+          "Configured multiple terraform workspaces to reuse infrastructure code and build multiple workload enviornments",
+          "Build AWS kubernetes (EKS) clusters with configurable spot and/or ondemand autoscaling groups",
+          "Build Harshicorp Vault for secret management, enabled kubernetes auth for pod and namespace level access controls",
+          "Build CI/CD pipeline framework for developer to build and release new features faster",
+          "Logging and monitoring for better Observability and quck learn cycle"
+        ]
+        },
+        {
+          "title":"AWS Control Tower, SSO, EKS: Desinged and Developed under 200 hours",
+          "description": "Configure AWS Control Tower, external SSO with AzureAD, Build and Configure EKS clusters, enable RBAC for SSO Users",
+          "image": require('./images/AWS_Multi_Region_Network.png'),
+          "highlites": [
+            "Configured Control Tower, Exernal SSO, AWS Orgnization Units, Service Control Policies and Gaurd Rails",
+            "Enabled EKS authentication for SSO users and groups",
+            "Jenkins for CI, ArgoCD for CD, fluentd for logging etc.,"
+          ]
+        },
+]
