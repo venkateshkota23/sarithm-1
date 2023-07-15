@@ -1,6 +1,185 @@
-import { Margin } from "@mui/icons-material";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import React from "react";
+
+const projects = [
+  {
+    projectName: "Project 1",
+    projectDescription:
+      "As an early adopter of containers and kubernetes on AWS, the company's site reliability engineering (SRE) team was still using first-generation tooling that required high-effort customization.",
+    skills: [
+      {
+        name: "AWS",
+        description:
+          "(to manage resources in cloud computing and cloud storage as well as security credentials)",
+      },
+      {
+        name: "MySQL",
+        description:
+          "(to manage resources in cloud computing and cloud storage as well as security credentials)",
+      },
+      {
+        name: "REACT",
+        description:
+          "(to manage resources in cloud computing and cloud storage as well as security credentials)",
+      },
+      {
+        name: "JAVA",
+        description:
+          "(to manage resources in cloud computing and cloud storage as well as security credentials)",
+      },
+    ],
+    images: [
+      {
+        img: "https://placeholder.pics/svg/300x400/16FF68-2548FF/FF608C/Project",
+        title: "Project image title",
+      },
+      {
+        img: "https://placeholder.pics/svg/300x400/16FF68-2548FF/FF608C/Project",
+        title: "Project image title",
+      },
+      {
+        img: "https://placeholder.pics/svg/300x400/16FF68-2548FF/FF608C/Project",
+        title: "Project image title",
+      },
+      {
+        img: "https://placeholder.pics/svg/400x400/DEDEDE/555555/Project",
+        title: "Project image title",
+      },
+    ],
+  },
+  {
+    projectName: "Project 2",
+    projectDescription:
+      "As an early adopter of containers and kubernetes on AWS, the company's site reliability engineering (SRE) team was still using first-generation tooling that required high-effort customization.",
+    skills: [
+      {
+        name: "AZURE",
+        description:
+          "(to manage resources in cloud computing and cloud storage as well as security credentials)",
+      },
+      {
+        name: "SQL",
+        description:
+          "(to manage resources in cloud computing and cloud storage as well as security credentials)",
+      },
+      {
+        name: "Angular",
+        description:
+          "(to manage resources in cloud computing and cloud storage as well as security credentials)",
+      },
+      {
+        name: ".Net",
+        description:
+          "(to manage resources in cloud computing and cloud storage as well as security credentials)",
+      },
+    ],
+    images: [
+      {
+        img: "https://placeholder.pics/svg/300x400/16FF68-2548FF/FF608C/Project",
+        title: "Project image title",
+      },
+      {
+        img: "https://placeholder.pics/svg/400x400/DEDEDE/555555/Project",
+        title: "Project image title",
+      },
+    ],
+  },
+];
+
+const SkillItem = ({skill}) => {
+  return (<Box>
+    <Typography variant="h6">{skill.name}</Typography>
+    <Typography variant="body2">
+      {skill.description}
+    </Typography>
+  </Box>);
+}
+
+const ProjectItemImages = ({images}) => {
+  return (
+        <ImageList
+          sx={{
+            gridAutoFlow: "column",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(160px,1fr)) !important",
+            gridAutoColumns: "minmax(160px, 1fr)",
+          }}
+          rowHeight={300}
+        >
+          {images.map((item) => (
+            <ImageListItem key={item.img}>
+              <img
+                src={`${item.img}`}
+                srcSet={`${item.img}`}
+                alt={item.title}
+                loading="lazy"
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>  
+  )
+}
+
+const ProjectItemCard = ({project}) => {
+  const [projectDetails, setprojectDetails] = useState([]);
+
+  return (
+    <Card
+    variant="outlined"
+    sx={{ mb: "2rem", borderRadius: "30px" }}
+  >
+    <CardHeader
+      title={project.projectName}
+      subheader={project.projectDescription}
+    ></CardHeader>
+    <CardContent>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: {
+            xs: "column",
+            sm: "row"
+          },
+          alignItems: "flex-start",
+          justifyContent: 'space-between',
+          gap: '1rem',
+          mb: "2rem",
+        }}
+      >
+        {project.skills.map((skill) => (
+          <SkillItem skill={skill}></SkillItem>
+        ))}
+      </Box>
+      <Box>
+        <ProjectItemImages images={project.images}></ProjectItemImages>
+      </Box>
+    </CardContent>
+    <Link to="/ProjectListDetail"  key = {project.projectName } state={{ title: project.projectName,
+                 description: project.projectDescription,
+                }}>
+    <Button
+      fullWidth={true}
+      sx={{
+        borderTop: "1px solid rgba(0, 0, 0, 0.12)",
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
+      }}
+    >
+      View full story
+    </Button> </Link>
+    {/* {setprojectDetails(project.projectDescription)} */}
+  </Card>
+  )
+}
+
 class ProjectList extends React.Component {
   render() {
     return (
@@ -21,195 +200,15 @@ class ProjectList extends React.Component {
               <div class="content">
                 <span class="pageTitle">PROJECTS</span>
                 <br />
-                {/* <span class="subTitle">
-                  We believe that the infrastructure transparency leads to
-                  higher <br />
-                  efficiency in infrastructure management...
-                </span> */}
               </div>
             </div>
           </div>
-       <br />
-
-          {/* <div
-          style={{
-               width: "1250px",
-               height: "471px",
-               borderRadius: "30px",
-               display: 'flex',
-               flexShrink: " 0",
-               border: "1px solid #C3C3C3"
-
-              }}> Project Names
-          </div> */}
-
           <br />
-
-          <div style={{
-              borderRadius: "30px",
-              border: "1px solid #C3C3C3",
-              margin: "0% 5%",
-              height: "auto"
-              
-             }}>
-            {/* <h3>   Project 1</h3> */}
-            <p style={{
-              height:"24px",
-              width:"146px",
-              color: "#333",
-              fontSize: "20px",
-              fontFamily: "Inter",
-              fontWeight: "700",
-              margin: "0% 5%"
-              
-             }}>   Project 1</p> <br />
-
-            <div className="list-container"
-            style={{
-              display: 'flex',
-              margin: "0% 5%"
-             }}>
-              <div className="list-item" >
-                <h4>AWS</h4>
-                <p>
-                (to manage resources in cloud computing and cloud storage as well as security credentials)
-                </p>
-              </div>
-              <div>
-                <h4>JAVA</h4>
-                <p>
-                (to manage resources in cloud computing and cloud storage as well as security credentials)
-                </p>
-              </div>
-              <div>
-                <h4>MySql</h4>
-                <p>
-                (to manage resources in cloud computing and cloud storage as well as security credentials)
-                </p>
-              </div>
-              <div>
-                <h4>React</h4>
-                <p>
-                (to manage resources in cloud computing and cloud storage as well as security credentials)
-                </p>
-              </div>
-            </div>
-            
-            <div style={{
-              margin: "0% 5%"
-             }}>
-              <Link to={`/jobs/`}>
-                <div class="card text-center">
-                  <button type="button" class="btn btn-outline-primary">
-                {" "}
-                Learn More{" "}
-              </button>
-            </div>
-          </Link></div><br />
-          </div>
-          <br/>
-
-
-          <div style={{
-              borderRadius: "30px",
-              border: "1px solid #C3C3C3",
-              margin: "0% 5%",
-              height: "auto"
-              
-             }}>
-            {/* <h3>   Project 1</h3> */}
-            <p style={{
-              height:"24px",
-              width:"146px",
-              color: "#333",
-              fontSize: "20px",
-              fontFamily: "Inter",
-              fontWeight: "700",
-              margin: "0% 5%"
-              
-             }}>   Project 2</p> <br />
-
-            <div className="list-container"
-            style={{
-              display: 'flex',
-              margin: "0% 5%"
-             }}>
-              <div className="list-item" >
-                <h4>AWS</h4>
-                <p>
-                (to manage resources in cloud computing and cloud storage as well as security credentials)
-                </p>
-              </div>
-              <div>
-                <h4>JAVA</h4>
-                <p>
-                (to manage resources in cloud computing and cloud storage as well as security credentials)
-                </p>
-              </div>
-              <div>
-                <h4>MySql</h4>
-                <p>
-                (to manage resources in cloud computing and cloud storage as well as security credentials)
-                </p>
-              </div>
-              <div>
-                <h4>React</h4>
-                <p>
-                (to manage resources in cloud computing and cloud storage as well as security credentials)
-                </p>
-              </div>
-            </div>
-            
-            <div style={{
-              margin: "0% 5%"
-             }}>
-              <Link to={`/jobs/`}>
-                <div class="card text-center">
-                  <button type="button" class="btn btn-outline-primary">
-                {" "}
-                Learn More{" "}
-              </button>
-            </div>
-          </Link></div><br />
-          </div><br></br>
-          
-
-          <div className="content padSmall">
-            <p>
-              We believe that the infrastructure transparency leads to higher
-              efficiency in infrastructure management. A solid understanding of
-              our infrastructure in the beginning stages is a manageable task,
-              though we often tend to lose this understanding as it begins to
-              grow. This creates the need for a resource that allows us to keep
-              track of all dynamic infrastructure changes. Our best practices
-              will allow you to do just that. Your SysOps and DevOps can now
-              keep track of all changes, addressing each one as it happens,
-              which results in a secured, cost effective, and well managed
-              infrastructure.
-            </p>
-            <div class="subTitle2">Terraform</div>
-            <b>Write code, run plan and apply code to build infrastructure.</b>
-            Terraform offer best in class Infrastructure as Code solution. We
-            have <b>ready to use</b> modules for widely used resouces. It means
-            much <b>faster, cost effective and efficient.</b>
-            We love to solution small to medium size cloud optimization
-            projects, excited to take tiny part in your cloud journey.{" "}
-            <b>How do you know we are right fit?</b>
-            [1] We are passionate about opportunities to work on Cloud. [2] We
-            understand the importance to maintain balance between speed &
-            safely. [3] We customize code to fit existing continuous delivery
-            pipeline.
-            <div class="subTitle2">Atlantis</div>
-            terraform pull request automation! A cutomized solution ready to
-            use!! terraform module to build Atlantis using ECS, SSM,
-            assume_roles. It allows us to apply terraform modules to multiple
-            accounts with required subtle variation using variables build on
-            terraform workspaces. [1] Never apply terraform code without peer
-            review. [2] Fully automated GitOps implementation
-            <br />
-            <br />
-            <br></br>
-          </div>
+          <Box sx={{ mx: "10%", my: "2rempx" }}>
+            {projects.map((project) => (
+              <ProjectItemCard project={project}></ProjectItemCard>
+            ))}
+          </Box>
         </div>
         <div style={{ clear: "both" }}></div>
       </main>
