@@ -1,5 +1,18 @@
 import React from "react";
 import { useLocation } from 'react-router-dom';
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
+
+
+const SkillItem = ({skill}) => {
+    return (<Box>
+      <Typography variant="h6">{skill.name}</Typography>
+      <Typography variant="body2">
+        {skill.description}
+      </Typography>
+    </Box>);
+  }
 
 
 const ProjectListDetail = () => {
@@ -34,7 +47,7 @@ const ProjectListDetail = () => {
         </div>
         <div class="bannerContent">
           <div class="content">
-            <span class="pageTitle">{location.state.projectName}</span>
+            <span class="pageTitle">{location.state.title}</span>
             <br />
             <span class="subTitle">
               {/* We are passionate about building innovative <br />
@@ -44,7 +57,41 @@ const ProjectListDetail = () => {
         </div>
       </div>
 
+      <br /> <br />
+
+      <h4>{location.state.title}</h4> <br />
+
+      <p>{location.state.fullDescription}</p>
+
+      <br />
+
+      <p>   Project description comes here...!!! <br></br><br></br></p>
+
+      <h4>Technologies</h4>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: {
+            xs: "column",
+            sm: "row"
+          },
+          alignItems: "flex-start",
+          justifyContent: 'space-between',
+          gap: '1rem',
+          mb: "2rem",
+        }}
+      >
+      {location.state.technologies.map((skill) => (
+        <Card
+        variant="outlined"
+        sx={{ mb: "2rem", borderRadius: "30px" }}
+      >
+          <Box sx={{ mx: "10%", my: "2rempx" }}> <SkillItem skill={skill}></SkillItem></Box> </Card>
+        ))} </Box>
+
       <div className="content padSmall">
+     
         <div class="pDesc">
            <span class="subTitle1">
                       {/* <b>{location.state.title}</b> */}
@@ -61,7 +108,7 @@ const ProjectListDetail = () => {
             <br />
 
             <span class="subTitle1">
-                      <b>Project Highlights</b>
+                      {/* <b>Project Highlights</b> */}
              </span>
              <br />
 

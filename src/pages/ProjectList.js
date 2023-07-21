@@ -14,6 +14,8 @@ const projects = [
     projectName: "Project 1",
     projectDescription:
       "As an early adopter of containers and kubernetes on AWS, the company's site reliability engineering (SRE) team was still using first-generation tooling that required high-effort customization.",
+    projectFullDescription:
+    "As an early adopter of containers and Kubernetes on AWS, the companys site reliability engineering (SRE) team was still using first-generation tooling that required high-effort customization. As an early adopter of containers and Kubernetes on AWS, the companys site reliability engineering (SRE) team was still using first-generation tooling that required high-effort customization.As an early adopter of containers and Kubernetes on AWS, the companys site reliability engineering (SRE) team was still using first-generation tooling that required high-effort customization.As an early adopter of containers and Kubernetes on AWS, the companys site reliability engineering (SRE) team was still using first-generation tooling that required high-effort customization." ,
     skills: [
       {
         name: "AWS",
@@ -164,6 +166,8 @@ const ProjectItemCard = ({project}) => {
     </CardContent>
     <Link to="/ProjectListDetail"  key = {project.projectName } state={{ title: project.projectName,
                  description: project.projectDescription,
+                 fullDescription: project.projectFullDescription,
+                 technologies: project.skills,
                 }}>
     <Button
       fullWidth={true}
