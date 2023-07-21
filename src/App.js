@@ -22,6 +22,7 @@ import Preview from "./pages/Preview";
 import Login from "./components/Login";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
+import ProjectListDetail from "./pages/ProjectListDetail";
 import ProjectList from "./pages/ProjectList";
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
           {/* <Route path="/projects" element={<Home />} /> */}
           <Route path="/projects" element={<ProjectList />} />
           <Route path="/projectdetail" element={<ProjectDetail />} />
+          <Route path="/projectlistdetail" element={<ProjectListDetail />} />
           <Route path="/search" element={<Search />} />
           <Route path="?code=<.*>" component={<Infrastructure />} />
           <Route exact path="/jobs" element={<JobListing />} />
