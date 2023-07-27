@@ -15,20 +15,90 @@ const SkillItem = ({skill}) => {
   }
 
 
+const FeatureItem = ({feature}) => {
+    return (
+        <div>
+            {feature.img === null ? (
+                <p>
+                    <Typography variant="h6">{feature.featureHeading}</Typography>
+                    <Typography variant="body2">
+                        {feature.featureDescription}
+                    </Typography>
+                </p>
+            ) : (
+                <div style={{
+                    display: "flex",
+                    flexDirection: {
+                      xs: "column",
+                      sm: "row"
+                    },
+                  }} >
+            <div style={{
+                    flex: 1,
+                    maxWidth : "100%",
+                  }} >
+                    <img
+                        src={feature.img}
+                        srcSet={feature.img}
+                        alt={feature.title}
+                        loading="lazy"
+                      />
+                  </div>
+                  <div style={{
+                    flex: 1,
+                  }} >
+                    {/* <p>{feature.featureDescription}</p> */}
+                    <Typography variant="h6">{feature.featureHeading}</Typography>
+              <Typography variant="body2">
+                {feature.featureDescription}
+              </Typography>
+                  </div>     
+            </div>
+            )   
+        }
+        </div>
+    );
+  }
+
+
+  const FeatureItemalt = ({feature}) => {
+    return (
+    <div style={{
+            display: "flex",
+            flexDirection: {
+              xs: "column",
+              sm: "row"
+            },
+          }} >
+
+        <div style={{
+            flex: 1,
+          }} >
+            {/* <p>{feature.featureDescription}</p> */}
+            <Typography variant="h6">{feature.featureHeading}</Typography>
+      <Typography variant="body2">
+        {feature.featureDescription}
+      </Typography>    
+          </div>  
+    <div style={{
+            flex: 1,
+            maxWidth : "100%",
+          }} >
+            <img
+                src={feature.img}
+                srcSet={feature.img}
+                alt={feature.title}
+                loading="lazy"
+              />
+          </div>   
+
+    </div>
+    );
+  }
+
+
 const ProjectListDetail = () => {
     const location = useLocation();
-    // console.log(location.state.title);
-    // console.log(location.state.description);
-    // console.log(location.state.image);
-    // console.log(location.state.highlites);
-
-
-    // const details = location.state.highlites.map((skill, index) => {
-    //     return <ul>
-    //         <li key={index}>{skill}</li>
-    //     </ul>
-    // });
-
 
   return (
     <main>
@@ -65,7 +135,19 @@ const ProjectListDetail = () => {
 
       <br />
 
-      <p>   Project description comes here...!!! <br></br><br></br></p>
+        {/* {location.state.features.map((feature) => (
+         <FeatureItem feature={feature}></FeatureItem>
+        ))} */}
+
+        {location.state.features.map((feature,index) => {
+            return index % 2 === 0 ?
+            <FeatureItem feature={feature}></FeatureItem> :
+            <FeatureItemalt feature={feature}></FeatureItemalt>;
+         })}
+
+      {/* <p>   Project description comes here...!!! <br></br><br></br></p> */}
+
+      <br></br><br></br>
 
       <h4>Technologies</h4>
 
@@ -93,24 +175,13 @@ const ProjectListDetail = () => {
       <div className="content padSmall">
      
         <div class="pDesc">
-           <span class="subTitle1">
-                      {/* <b>{location.state.title}</b> */}
-             </span>
+          
 
-           <br></br>
-            {/* <p><b>{location.state.description}</b></p> */}
-            <br></br>
-            <br />
+           
 
             {/* <img src = {location.state.image} /> {" "} */}
 
-            <br></br>
-            <br />
-
-            <span class="subTitle1">
-                      {/* <b>Project Highlights</b> */}
-             </span>
-             <br />
+            
 
             {/* {details.length > 0 ? (
             <p> {details} </p>
