@@ -9,13 +9,13 @@ import ImageListItem from "@mui/material/ImageListItem";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {projects} from "../ProjectListData";
-
+//import {styles} from "../ProjectListStyles";
 
 const SkillItem = ({skill}) => {
   return (<Box>
-    <Typography variant="h6">{skill.name}</Typography>
+    <Typography variant="h6"><div style={skill.skillNameStyle}>{skill.name}</div></Typography>
     <Typography variant="body2">
-      {skill.description}
+    <div style={skill.skillDescriptionStyle}>{skill.description}</div>
     </Typography>
   </Box>);
 }
@@ -49,6 +49,7 @@ const ProjectItemCard = ({project}) => {
   const [projectDetails, setprojectDetails] = useState([]);
 
   return (
+    
     <Card
     variant="outlined"
     sx={{ mb: "2rem", borderRadius: "30px" }}
@@ -83,6 +84,7 @@ const ProjectItemCard = ({project}) => {
                  description: project.projectDescription,
                  fullDescription: project.projectFullDescription,
                  technologies: project.skills,
+                 technologiesHeadingStyle: project.technologiesHeadingStyle,
                  features: project.images
                 }}>
     <Button

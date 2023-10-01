@@ -3,13 +3,15 @@ import { useLocation } from 'react-router-dom';
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
+import "../../src/App.css"; 
+//import {Detailstyles} from "../ProjectListDetailStyles";
 
 
 const SkillItem = ({skill}) => {
     return (<Box>
-      <Typography variant="h6">{skill.name}</Typography>
+      <Typography variant="h6"><div style={skill.skillNameStyle}>{skill.name}</div></Typography>
       <Typography variant="body2">
-        {skill.description}
+      <div style={skill.skillDescriptionStyle}>{skill.description}</div>
       </Typography>
     </Box>);
   }
@@ -18,15 +20,16 @@ const SkillItem = ({skill}) => {
 const FeatureItem = ({feature}) => {
     return (
         <div>
+            <br /> <br />
+            <Typography variant="h6"><div style={feature.featureHeading.textStyle}>{feature.featureHeading.textData}</div></Typography> <br /><br />
             {feature.img === null ? (
                 <p>
-                    <Typography variant="h6">{feature.featureHeading}</Typography>
-                    <Typography variant="body2">
-                        {feature.featureDescription}
+                    <Typography variant="h6"><div style={feature.featureHeading.textStyle}>{feature.featureHeading.textData}</div></Typography>
+                    <Typography variant="body2"><div style={feature.featureDescription.textStyle}> {feature.featureDescription.textData}</div>
                     </Typography>
                 </p>
             ) : (
-                <div style={{
+                <Box sx={{
                     display: "flex",
                     flexDirection: {
                       xs: "column",
@@ -35,7 +38,8 @@ const FeatureItem = ({feature}) => {
                   }} >
             <div style={{
                     flex: 1,
-                    maxWidth : "100%",
+                    display:"flex",
+                    justifyContent: "center",
                   }} >
                     <img
                         src={feature.img}
@@ -46,14 +50,17 @@ const FeatureItem = ({feature}) => {
                   </div>
                   <div style={{
                     flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                   
                   }} >
                     {/* <p>{feature.featureDescription}</p> */}
-                    <Typography variant="h6">{feature.featureHeading}</Typography>
+                    {/* <Typography variant="h6">{feature.featureHeading}</Typography> */}
               <Typography variant="body2">
-                {feature.featureDescription}
+              <div style={feature.featureDescription.textStyle}> {feature.featureDescription.textData}</div>
               </Typography>
-                  </div>     
-            </div>
+                  </div>   
+            </Box> 
             )   
         }
         </div>
@@ -61,9 +68,20 @@ const FeatureItem = ({feature}) => {
   }
 
 
-  const FeatureItemalt = ({feature}) => {
+const FeatureItemalt = ({feature}) => {
     return (
-    <div style={{
+        <div>
+            <br /> <br /> 
+            <Typography variant="h6"><div style={feature.featureHeading.textStyle}>{feature.featureHeading.textData}</div></Typography> <br />
+            {feature.img === null ? (
+                <p>
+                    <Typography variant="h6"><div style={feature.featureHeading.textStyle}>{feature.featureHeading.textData}</div></Typography>
+                    <Typography variant="body2">
+                    <div style={feature.featureDescription.textStyle}> {feature.featureDescription.textData}</div>
+                    </Typography>
+                </p>
+            ) : (
+                    <Box id="alt" sx={{
             display: "flex",
             flexDirection: {
               xs: "column",
@@ -73,16 +91,19 @@ const FeatureItem = ({feature}) => {
 
         <div style={{
             flex: 1,
+            display:"flex",
+            justifyContent: "center",
           }} >
-            {/* <p>{feature.featureDescription}</p> */}
-            <Typography variant="h6">{feature.featureHeading}</Typography>
-      <Typography variant="body2">
-        {feature.featureDescription}
-      </Typography>    
+            {/* <Typography variant="h6">{feature.featureHeading}</Typography> */}
+            <Typography variant="body2">
+            <div style={feature.featureDescription.textStyle}> {feature.featureDescription.textData}</div>
+            </Typography>    
           </div>  
-    <div style={{
+        <div style={{
             flex: 1,
-            maxWidth : "100%",
+            // maxWidth : "100%",
+            display:"flex",
+            justifyContent: "center",
           }} >
             <img
                 src={feature.img}
@@ -92,9 +113,13 @@ const FeatureItem = ({feature}) => {
               />
           </div>   
 
-    </div>
+    </Box>
+            )   
+        }
+        </div>
     );
   }
+
 
 
 const ProjectListDetail = () => {
@@ -126,18 +151,18 @@ const ProjectListDetail = () => {
           </div>
         </div>
       </div>
-
+      <div style={{
+        margin: "0 10%" 
+      }}>
       <br /> <br />
 
-      <h4>{location.state.title}</h4> <br />
+      {/* <h4>{location.state.title}</h4> <br /> */}
 
-      <p>{location.state.fullDescription}</p>
+      <p><div style={location.state.fullDescription.textStyle}>{location.state.fullDescription.textData}</div></p>
 
       <br />
 
-        {/* {location.state.features.map((feature) => (
-         <FeatureItem feature={feature}></FeatureItem>
-        ))} */}
+        
 
         {location.state.features.map((feature,index) => {
             return index % 2 === 0 ?
@@ -145,11 +170,10 @@ const ProjectListDetail = () => {
             <FeatureItemalt feature={feature}></FeatureItemalt>;
          })}
 
-      {/* <p>   Project description comes here...!!! <br></br><br></br></p> */}
-
+    
       <br></br><br></br>
 
-      <h4>Technologies</h4>
+      <h4><div style={location.state.technologiesHeadingStyle}>Technologies</div></h4>
 
       <Box
         sx={{
@@ -195,7 +219,7 @@ const ProjectListDetail = () => {
           <br />
         </div>
         <br />
-
+        </div>
     </div>
     <div style={{ clear: "both" }}></div>
   </main>
